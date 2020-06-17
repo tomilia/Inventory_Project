@@ -1,7 +1,7 @@
 package com.tomilia.project;
 
 import com.tomilia.project.api.MainFrameCSVUploadController;
-import com.tomilia.project.api.MemberController;
+import com.tomilia.project.api.ProductController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +14,7 @@ class ProjectApplicationTests {
 	@Autowired
 	private MainFrameCSVUploadController main_controller;
 	@Autowired
-	private MemberController inventory_controller;
+	private ProductController inventory_controller;
 
 	@Test
 	public void contexLoads() throws Exception {

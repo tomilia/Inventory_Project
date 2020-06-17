@@ -4,7 +4,7 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.tomilia.project.model.Member;
 import com.tomilia.project.model.Prod_Loc;
-import com.tomilia.project.services.MemberService;
+import com.tomilia.project.services.ProductService;
 import org.apache.commons.io.input.BOMInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,16 +26,16 @@ import java.util.List;
 @Controller
 public class MainFrameCSVUploadController {
 
-    private final MemberService memberService;
+    private final ProductService productService;
 
     @Autowired
-    public MainFrameCSVUploadController(MemberService memberService) {
-        this.memberService = memberService;
+    public MainFrameCSVUploadController(ProductService productService) {
+        this.productService = productService;
     }
 
     @GetMapping
     public String mainPage(HttpServletRequest request, Model model) {
-        model.addAttribute("message", memberService.getAllPeople());
+        model.addAttribute("message", productService.getAllPeople());
         return "MainPage";
     }
 
@@ -59,7 +59,7 @@ public class MainFrameCSVUploadController {
                 List<Member> products = csvToBean.parse();
 
                 // TODO: save inventory in DB?
-                model.addAttribute("message", memberService.addProductDetailFromCSV(products));
+                model.addAttribute("message", productService.addProductDetailFromCSV(products));
                 model.addAttribute("status", true);
 
             } catch (Exception ex) {
@@ -93,7 +93,7 @@ public class MainFrameCSVUploadController {
 
                 // TODO: save inventory in DB?
 
-                model.addAttribute("message", memberService.setProductQuantityFromCSV(products));
+                model.addAttribute("message", productService.setProductQuantityFromCSV(products));
                 model.addAttribute("status", true);
 
             } catch (Exception ex) {

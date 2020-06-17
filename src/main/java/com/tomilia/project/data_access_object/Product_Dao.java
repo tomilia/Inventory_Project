@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface Member_Dao {
+public interface Product_Dao {
     int insertMember(String id, Member member);
 
     List<Member> selectAllMember();

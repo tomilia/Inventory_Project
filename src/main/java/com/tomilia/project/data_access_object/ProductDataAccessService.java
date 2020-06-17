@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository("mysql")
-public class MemberDataAccessService implements Member_Dao {
+public class ProductDataAccessService implements Product_Dao {
 
     private final JdbcTemplate jdbcTemplate;
     @Autowired
-    public MemberDataAccessService(JdbcTemplate jdbcTemplate) {
+    public ProductDataAccessService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

@@ -1,6 +1,6 @@
 package com.tomilia.project;
 
-import com.tomilia.project.data_access_object.MemberDataAccessService;
+import com.tomilia.project.data_access_object.ProductDataAccessService;
 import com.tomilia.project.model.Member;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,13 +22,13 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @JdbcTest
 @ContextConfiguration(classes=ProjectApplication.class)
-@Import(MemberDataAccessService.class)
+@Import(ProductDataAccessService.class)
 @Transactional
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public class InsertProductTest {
 
     @Autowired
-    MemberDataAccessService repository;
+    ProductDataAccessService repository;
 
     @Autowired
     JdbcTemplate jdbcTemplate;
