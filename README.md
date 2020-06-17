@@ -7,7 +7,7 @@
 
 2. Navigate to `src/resources/application.properties`
 
-3. Change the MySQL username & password under `spring.datasource.username` and `spring.datasource.username` respectively
+3. Change the MySQL username & password under `spring.datasource.username` and `spring.datasource.password` respectively
    
   **Alternative:**
 1. Clone MySQL image from docker hub : `docker pull arsenel12/mysql-spring:first`
