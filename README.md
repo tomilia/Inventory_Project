@@ -19,8 +19,6 @@
 4. The database is now ready!
 
 
-###
-
 ## To run the Spring Application:
 
 1. Clone this project
@@ -29,6 +27,16 @@
 4. Run `cd target && java -jar project-0.0.1-SNAPSHOT.jar`
 5. Open Browser and navigate to `localhost:8080` :sparkles: 
 
-### Sample data:
-* data.csv imports the Products detail (i.e. p_code,p_name and p_weight) accepts format with 3 columns namely "Code","Name","Weight" uploading to the web application by UI manually.
-* product_quantity.csv imports the amount & location to store referring to the product code uploading to the web application by UI manually.
+### CSV Uploading Mechanism and sample data
+* The csv data are uploaded to the Web App via UI
+  * Sample data are presented namely "data.csv" (for Product Details) and "product_quantity.csv" (for Product Quantity)
+  * Assume no repeating data will be uploading in one csv, otherwise the latter will be ignored.
+* "data.csv" accepts rows from 3 columns namely "Code","Name" & "Weight".
+* "product_quantity.csv" accepts rows from 3 columns namely "Code","Amount" & "Location".
+
+## Daily Process
+
+  15/6: Build & Config the Spring Application, dividing data access object, services and api controller, mapping row of Objects into Database, testing asynchronous call to render from Controller result in Thymeleaf template.
+  16/6: Creating CSV Reader and notify CSV "BOM" bug, fix the bugs and create test for JDBC Insertion.
+  17/6: Create docker image and push & Refactor the name (as I wrongly start the project with Object name called "Member"!)
+   
