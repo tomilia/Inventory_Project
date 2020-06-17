@@ -25,7 +25,7 @@
 
 4. Run `docker exec -it mysql-spring bash -c "mysql -uroot -p -e \" CREATE DATABASE Inventory; \""` to create Inventory Database
 
-5. Enter Passw0rd!
+5. Enter Passw0rd! (Might require several trials)
 
 6. The database is now ready!
 
