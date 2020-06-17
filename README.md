@@ -14,7 +14,7 @@
 
 5. Change the MySQL database username and password under `spring.datasource.username=<your_username>` and `spring.datasource.password=<your_password>` respectively
    
-6. Change the MySQL URL if needed
+6. Change the MySQL URL under `spring.datasource.url` if needed
 
   **Alternative:**
 1. Clone MySQL image from docker hub : `docker pull arsenel12/mysql-spring:first`
