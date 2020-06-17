@@ -30,7 +30,7 @@
 ### CSV Uploading Mechanism and sample data
 * The csv data are uploaded to the Web App via UI
   * Sample data are presented namely "data.csv" (for Product Details) and "product_quantity.csv" (for Product Quantity)
-  * Assume no repeating data will be uploading in one csv, otherwise the latter will be ignored.
+  * Assume no repeating product code  will be appeared in same csv, otherwise the latter will be ignored.
 * "data.csv" accepts rows from 3 columns namely "Code","Name" & "Weight".
 * "product_quantity.csv" accepts rows from 3 columns namely "Code","Amount" & "Location".
 
@@ -38,5 +38,5 @@
 
   15/6: Build & Config the Spring Application, dividing data access object, services and api controller, mapping row of Objects into Database, testing asynchronous call to render from Controller result in Thymeleaf template.
   16/6: Creating CSV Reader and notify CSV "BOM" bug, fix the bugs and create test for JDBC Insertion.
-  17/6: Create docker image and push & Refactor the name (as I wrongly start the project with Object name called "Member"!)
+  17/6: Create docker image and push & Refactor the name (as I wrongly start the project with DAO named "Member"...)
    
