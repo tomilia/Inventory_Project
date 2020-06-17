@@ -40,7 +40,8 @@
 
 ## Daily Process
 
-  15/6: Build & Config the Spring Application, dividing data access object, services and api controller, mapping row of Objects into Database, testing asynchronous call to render from Controller result in Thymeleaf template.
-  16/6: Creating CSV Reader and notify CSV "BOM" bug, fix the bugs and create test for JDBC Insertion.
-  17/6: Create docker image and push & Refactor the name (as I wrongly start the project with DAO named "Member"...)
+- 15/6: Build & Config the Spring Application, dividing data access object, services and api controller, mapping row of Objects into Database, testing asynchronous call to render from Controller result in Thymeleaf template.
+
+- 16/6: Creating CSV Reader and notify CSV "BOM" bug, fix the bugs and create test for JDBC Insertion.
+- 17/6: Create docker image and push & Refactor the name (as I wrongly start the project with DAO named "Member"...)
    
