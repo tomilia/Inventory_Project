@@ -4,7 +4,7 @@
 
 ## To initialize the database in MySQL:
 
-1. Run MySQL Server on Port 3306 and create database named "Inventory";
+1. Run MySQL Server on Port 3306
 
 2. Clone this project
 
@@ -12,10 +12,8 @@
 
 4. Navigate to `src/resources/application.properties`
 
-5. Change the MySQL database username and password under `spring.datasource.username=<your_username>` and `spring.datasource.password=<your_password>` respectively
-   
-6. Change the MySQL URL under `spring.datasource.url` if needed
-
+5. Change to existing properties (i.e. `spring.datasource.username=<your_username>`, `spring.datasource.password=<your_password>` and `spring.datasource.url = jdbc:mysql://localhost:3306/<Your_Database_Name>` respectively)
+  
   **Alternative:**
 1. Clone MySQL image from docker hub : `docker pull arsenel12/mysql-spring:first`
 
@@ -32,11 +30,10 @@
 
 ## To run the Spring Application:
 
-1. Clone this project
-2. cd to `<your_source_path>/Inventory_Project`
-3. Run `mvn install`
-4. Run `cd target && java -jar project-0.0.1-SNAPSHOT.jar`
-5. Open Browser and navigate to `localhost:8080` :sparkles: 
+1. cd to `<your_source_path>/Inventory_Project`
+2. Run `mvn install`
+3. Run `cd target && java -jar project-0.0.1-SNAPSHOT.jar`
+4. Open Browser and navigate to `localhost:8080` :sparkles: 
 
 ### CSV Uploading Mechanism and sample data
 * The csv data are uploaded to the Web App via UI
