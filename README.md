@@ -1,5 +1,6 @@
 # Inventory_Project
 
+*** Please initialize the database before building the Web Application ***	
 
 ## To initialize the database in MySQL:
 
