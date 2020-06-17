@@ -19,7 +19,9 @@
 
 2. Run `docker run -p 3306:3306 -d --name=mysql-spring arsenel12/mysql-spring:first` to mount MySQL Server to Port 3306
 
-3. Run `docker exec -it mysql-spring bash -c "mysql -uroot -pPassw0rd! -e \" CREATE DATABASE Inventory; \""` to create   Inventory Database
+3. Run `docker exec -it mysql-spring bash -c "mysql -uroot -p -e \" CREATE DATABASE Inventory; \""` to create   Inventory Database
+
+4. Enter Passw0rd!
 
 4. The database is now ready!
 
