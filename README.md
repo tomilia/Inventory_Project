@@ -7,7 +7,7 @@
 
 2. Clone this project
 
-3. cd to <your_source_path>/project
+3. cd to `<your_source_path>/Inventory_Project`
 
 4. Navigate to `src/resources/application.properties`
 
@@ -26,7 +26,7 @@
 ## To run the Spring Application:
 
 1. Clone this project
-2. cd to `<your_source_path>/project`
+2. cd to `<your_source_path>/Inventory_Project`
 3. Run `mvn install`
 4. Run `cd target && java -jar project-0.0.1-SNAPSHOT.jar`
 5. Open Browser and navigate to `localhost:8080` :sparkles: 
