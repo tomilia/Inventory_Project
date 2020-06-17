@@ -5,9 +5,13 @@
 
 1. Run MySQL Server on Port 3306 and create database named "Inventory";
 
-2. Navigate to `src/resources/application.properties`
+2. Clone this project
 
-3. Change the MySQL username & password under `spring.datasource.username` and `spring.datasource.password` respectively
+3. cd to <your_source_path>/project
+
+4. Navigate to `src/resources/application.properties`
+
+5. Change the MySQL username & password under `spring.datasource.username` and `spring.datasource.password` respectively
    
   **Alternative:**
 1. Clone MySQL image from docker hub : `docker pull arsenel12/mysql-spring:first`
