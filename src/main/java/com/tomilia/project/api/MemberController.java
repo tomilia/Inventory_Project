@@ -1,5 +1,6 @@
 package com.tomilia.project.api;
 
+import com.tomilia.project.model.Compo_Product_Info;
 import com.tomilia.project.model.Member;
 import com.tomilia.project.model.Prod_Loc;
 import com.tomilia.project.services.MemberService;
@@ -22,18 +23,8 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @PostMapping
-    public void addMember(@Valid @NonNull @RequestBody Member member) {
-        memberService.addMember(member);
-    }
-
-    @GetMapping
-    public List<Member> getAllMember() {
-        return memberService.getAllPeople();
-    }
-
     @RequestMapping(value="/search", method=RequestMethod.POST)
-    public List<Prod_Loc> getMemberByID(@RequestParam("p_code") String p_code) {
+    public Compo_Product_Info getMemberByID(@RequestParam("p_code") String p_code) {
         return memberService.getMemberByID(p_code);
     }
     @RequestMapping(value="/transfer", method=RequestMethod.POST)
@@ -45,14 +36,5 @@ public class MemberController {
        // return memberService.getMemberByID(p_code);
     }
 
-    @DeleteMapping(path = "{p_code}")
-    public void deleteMemberByID(@PathVariable("p_code") String p_code) {
-        memberService.deleteMemberByID(p_code);
-    }
 
-    @PutMapping(path = "{p_code}")
-    public void updateMemberByID(@PathVariable("p_code") String p_code, @Valid @NonNull @RequestBody Member memberUpdate) {
-        System.out.println(p_code);
-        memberService.updateMemberByID(p_code, memberUpdate);
-    }
 }

@@ -1,22 +1,20 @@
 package com.tomilia.project.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.opencsv.bean.CsvBindByName;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-@Entity
-@Table
+
 public class Prod_Loc {
-
-    @ManyToOne
-    private final String p_code;
+    @CsvBindByName(column = "Code")
+    private String p_code;
     @NotBlank
-    private final int amount;
-    private final String location;
-
-    public Prod_Loc(@JsonProperty("p_code") String p_code, @JsonProperty("amount") int amount, @JsonProperty("location") String location) {
+    @CsvBindByName(column = "Amount")
+    private int amount;
+    @CsvBindByName(column = "Location")
+    private String location;
+    public Prod_Loc(){}
+    public Prod_Loc(String p_code,int amount,String location) {
         this.p_code = p_code;
         this.amount = amount;
         this.location = location;
@@ -30,6 +28,17 @@ public class Prod_Loc {
 
     public String getLocation() {
         return location;
+    }
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void setP_code(String p_code) {
+        this.p_code = p_code;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
 }

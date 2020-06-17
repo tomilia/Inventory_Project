@@ -1,5 +1,6 @@
 package com.tomilia.project.data_access_object;
 
+import com.tomilia.project.model.Compo_Product_Info;
 import com.tomilia.project.model.Member;
 import com.tomilia.project.model.Prod_Loc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,8 @@ import java.util.List;
 
 @Repository("mysql")
 public class MemberDataAccessService implements Member_Dao {
-    private JdbcTemplate jdbcTemplate;
 
+    private final JdbcTemplate jdbcTemplate;
     @Autowired
     public MemberDataAccessService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -38,15 +39,27 @@ public class MemberDataAccessService implements Member_Dao {
     Show Inventory amount
      */
     @Override
-    public List<Prod_Loc> selectMemberByID(String p_code) {
-        final String sql = "SELECT * FROM Prod_Loc WHERE p_code = ?";
-
+    public Compo_Product_Info selectMemberByID(String p_code) {
+        final String sql_get = "SELECT * FROM Product WHERE p_code = ?";
+        final String sql = "SELECT * FROM Prod_Loc,Product WHERE Product.p_code = Prod_Loc.p_code AND Product.p_code = ?";
+        Member inv_item_detail;
+        try {
+            inv_item_detail = jdbcTemplate.query(sql_get, new Object[]{p_code}, ((resultSet, i) -> {
+                return new Member(resultSet.getString("p_code"),
+                        resultSet.getString("p_name"),
+                        resultSet.getInt("p_weight"));
+            })).get(0);
+        } catch (Exception e) {
+            return null;
+        }
         List<Prod_Loc> members = jdbcTemplate.query(sql,
                 new Object[]{p_code}, ((resultSet, i) -> {
-                    return new Prod_Loc(resultSet.getString("p_code"), resultSet.getInt("amount"), resultSet.getString("location"));
+                    return new Prod_Loc(resultSet.getString("p_code"),
+                            resultSet.getInt("amount"),
+                            resultSet.getString("location"));
                 }));
 
-        return members;
+        return new Compo_Product_Info(inv_item_detail, members);
     }
 
     @Override
@@ -55,16 +68,72 @@ public class MemberDataAccessService implements Member_Dao {
     }
 
     @Override
+    public String setProductQuantityFromCSV(List<Prod_Loc> prod_locs) {
+        final String sql_delete = "DELETE FROM Prod_Loc";
+        final String sql_insert = "INSERT IGNORE INTO Prod_Loc" +
+                " (p_code, amount, location) " +
+                "VALUES" + " (?, ?, ?);";
+
+        for (Prod_Loc x : prod_locs) {
+            if (x.getP_code() == null || x.getLocation() == null || x.getAmount() == 0) {
+                System.out.println("Wrong Format of CSV");
+                return "Wrong Format of CSV";
+            }
+        }
+        jdbcTemplate.update(sql_delete);
+        int flag = 0;
+        for (Prod_Loc x : prod_locs) {
+            flag += jdbcTemplate.update(sql_insert,
+                    x.getP_code(), x.getAmount(), x.getLocation());
+            System.out.println(flag);
+        }
+        if (flag == 0) {
+            return "Please import the Product data first";
+        }
+        return "Inventory Update Successfully!";
+    }
+
+    @Override
+    public String addProductDetailFromCSV(List<Member> members) {
+        //insert if not exists product in product table
+        final String sql_delete = "DELETE FROM Product";
+        final String sql_insert = "INSERT IGNORE INTO Product" +
+                " (p_code, p_name, p_weight) " +
+                "VALUES" + " (?, ?, ?);";
+        for (Member x : members) {
+            if (x.getP_code() == null || x.getP_name() == null || x.getP_weight() == 0) {
+                System.out.println("Wrong Format of CSV");
+                return "Wrong Format of CSV";
+            }
+        }
+        jdbcTemplate.update(sql_delete);
+        int flag = 0;
+        for (Member x : members) {
+            flag += jdbcTemplate.update(sql_insert,
+                    x.getP_code(), x.getP_name(), x.getP_weight());
+
+        }
+
+        return "Inventory Update Successfully!";
+    }
+
+    @Override
     public String transferInventory(String p_code, int amount, String from, String to) {
         /*
-            case 1: code not found
+            case 1: amount <=0, code not found
             case 2: from location not found
             case 3: amount not enough
             case 4: success, minus from location plus to location , if location does not have inventory -> create
          */
         //case 1
-        if (selectMemberByID(p_code).size() == 0) {
+        if (amount <= 0) {
+            return "Quantity must be larger or equal to 0";
+        } else if (selectMemberByID(p_code) == null) {
+            //wrong code
             return "No such product";
+        } else if (selectMemberByID(p_code).getProd_loc_list().size() == 0) {
+            //have product but no inventory level
+            return "The product does not exist in inventory";
         }
         //case 2
         int have_inventory = 0;

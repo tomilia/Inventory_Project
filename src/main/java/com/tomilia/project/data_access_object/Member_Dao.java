@@ -1,5 +1,6 @@
 package com.tomilia.project.data_access_object;
 
+import com.tomilia.project.model.Compo_Product_Info;
 import com.tomilia.project.model.Member;
 import com.tomilia.project.model.Prod_Loc;
 
@@ -17,9 +18,14 @@ public interface Member_Dao {
         return insertMember(id, member);
     }
 
-    List<Prod_Loc> selectMemberByID(String id);
+
+    Compo_Product_Info selectMemberByID(String id);
 
     int deleteMemberById(String id);
+
+    String setProductQuantityFromCSV(List<Prod_Loc> prod_locs);
+
+    String addProductDetailFromCSV(List<Member> members);
 
     String transferInventory(String p_code,int amount,String from,String to);
 

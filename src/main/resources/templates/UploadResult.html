@@ -1,0 +1,19 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>File Upload</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script th:src="@{/js/jquery.min.js}" src="../js/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div id="main">
+
+    <div style="text-align:center">
+        <h2>Message from Server:</h2>
+        <p th:text="${message}"></p>
+        <a href="/">Go Back</a>
+    </div>
+</div>
+</body>
+</html>
